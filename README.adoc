@@ -1,0 +1,37 @@
+= Htmx + Kotlinx.Html Test with Spring Boot (Sandbox)
+
+== Features
+
+* Htmx
+* Kotlinx.Html
+* Spring Boot
+
+== Preconditions
+
+* Install the java version from link:.sdkmanrc[] via link:https://sdkman.io/[SdkMan] by calling `sdk env`
+
+== Usage
+
+* Run server via `./gradlew bootRun` and open link:http://localhost:8080[localhost:8080].
+* Run tests via `./gradlew test`
+
+== LiveReload / Restart
+
+LiveReload is great for fast iteration. It'll restart spring and refresh your browser window for changes.
+
+To use it:
+
+. Make sure you have the link:https://github.com/livereload/livereload-extensions[LiveReload extension] installed in Firefox/Chrome
+. Run your application via `./gradlew bootRun` and open the site in your browser
+. Trigger a rebuild in IntelliJ `CMD + F9`
+. Your browser should refresh after Spring has restarted
+
+== Acknowledgements
+
+Helpful links to get this working were:
+
+* Htmx Examples: https://htmx.org/examples/
+* For htmx integration: https://github.com/wiverson/htmx-demo/tree/main
+* For MockMvc usage: https://rieckpil.de/test-thymeleaf-controller-endpoints-with-spring-boot-and-mockmvc/
+* Kotlin Script Templating with Spring: https://github.com/sdeleuze/kotlin-script-templating/tree/master
+* Spring Kotlinx.Html Demo: https://github.com/ryanlewis/spring-kotlin-htmx/tree/main
