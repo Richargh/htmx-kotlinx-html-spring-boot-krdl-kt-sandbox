@@ -4,7 +4,7 @@ import kotlinx.html.dom.createHTMLDocument
 import kotlinx.html.dom.serialize
 import kotlinx.html.*
 
-fun generalPage(content: MAIN.() -> Unit): String {
+fun generalPage(ctx: PageContext, content: MAIN.() -> Unit): String {
     val html = createHTMLDocument().html {
         head {
             meta { charset = "utf-8" }
@@ -14,7 +14,7 @@ fun generalPage(content: MAIN.() -> Unit): String {
         }
         body {
             header {
-                menu()
+                menu(ctx)
             }
             main {
                 content()

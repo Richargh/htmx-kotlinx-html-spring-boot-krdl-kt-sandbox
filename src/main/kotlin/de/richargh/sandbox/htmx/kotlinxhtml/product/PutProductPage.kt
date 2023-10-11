@@ -1,5 +1,6 @@
 package de.richargh.sandbox.htmx.kotlinxhtml.product
 
+import de.richargh.sandbox.htmx.kotlinxhtml.commons.html.PageContext
 import de.richargh.sandbox.htmx.kotlinxhtml.commons.html.Paths
 import de.richargh.sandbox.htmx.kotlinxhtml.commons.html.generalPage
 import kotlinx.html.*
@@ -7,7 +8,7 @@ import kotlinx.html.FormMethod.*
 import org.springframework.validation.BindingResult
 import org.springframework.validation.FieldError
 
-fun putProductPage(product: ProductFormData, type: PutProductType, bindingResult: BindingResult? = null) = generalPage {
+fun putProductPage(ctx: PageContext, product: ProductFormData, type: PutProductType, bindingResult: BindingResult? = null) = generalPage(ctx) {
     h1 { +"$type Product" }
     putProductForm(product, type, bindingResult)
 }

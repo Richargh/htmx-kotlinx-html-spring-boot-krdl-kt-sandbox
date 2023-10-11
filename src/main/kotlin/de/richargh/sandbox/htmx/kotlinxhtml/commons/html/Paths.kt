@@ -7,6 +7,14 @@ object Paths {
         const val INDEX = "/greeting"
     }
 
+    object Login {
+        const val INDEX = "/login"
+    }
+
+    object Logout {
+        const val INDEX = "/logout"
+    }
+
     object Products {
         const val INDEX = "/products"
         const val ADD = "$INDEX/add"

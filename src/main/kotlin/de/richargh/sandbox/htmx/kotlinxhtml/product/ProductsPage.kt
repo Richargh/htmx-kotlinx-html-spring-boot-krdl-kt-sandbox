@@ -1,10 +1,11 @@
 package de.richargh.sandbox.htmx.kotlinxhtml.product
 
+import de.richargh.sandbox.htmx.kotlinxhtml.commons.html.PageContext
 import de.richargh.sandbox.htmx.kotlinxhtml.commons.html.Paths
 import de.richargh.sandbox.htmx.kotlinxhtml.commons.html.generalPage
 import kotlinx.html.*
 
-fun productsPage(products: Collection<Product>) = generalPage {
+fun productsPage(ctx: PageContext, products: Collection<Product>) = generalPage(ctx) {
     h1 { +"Products" }
     a(href = Paths.Products.ADD){ +"Add Product" }
     productsTable(products)
