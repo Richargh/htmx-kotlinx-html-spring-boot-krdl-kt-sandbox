@@ -3,9 +3,6 @@ package de.richargh.sandbox.htmx.kotlinxhtml
 import de.richargh.sandbox.htmx.kotlinxhtml.login.LoginFormData
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.security.authentication.AuthenticationManager
-import org.springframework.security.config.Customizer
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.core.userdetails.User
@@ -19,20 +16,6 @@ import org.springframework.security.web.SecurityFilterChain
 @Configuration
 @EnableWebSecurity
 class WebSecurityConfig {
-
-//    @Bean
-//    fun customAuthenticationProvider() = CustomAuthenticationProvider()
-
-//    @Bean
-//    fun authManager(http: HttpSecurity): AuthenticationManager {
-//        val authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder::class.java)
-//        authenticationManagerBuilder.authenticationProvider(customAuthenticationProvider())
-//        authenticationManagerBuilder.inMemoryAuthentication()
-//                .withUser("memuser")
-//                .password(passwordEncoder().encode("pass"))
-//                .roles("USER")
-//        return authenticationManagerBuilder.build()
-//    }
 
     @Bean
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
