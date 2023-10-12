@@ -6,7 +6,10 @@ import de.richargh.sandbox.htmx.kotlinxhtml.commons.html.generalPage
 import kotlinx.html.FormMethod.post
 import kotlinx.html.*
 
-fun loginPage(ctx: PageContext, loginError: Boolean, wasLoggedOut: Boolean) = generalPage(ctx) {
+fun loginPage(
+        ctx: PageContext,
+        loginError: Boolean,
+        wasLoggedOut: Boolean) = generalPage(ctx) {
     form {
         action = Paths.Login.INDEX
         method = post
@@ -30,5 +33,7 @@ fun loginPage(ctx: PageContext, loginError: Boolean, wasLoggedOut: Boolean) = ge
         div {
             input(type = InputType.submit) { value = "Sign In" }
         }
+
+        input(type = InputType.hidden, name = "_csrf") { value = ctx.csrfToken!!.rawValue }
     }
 }

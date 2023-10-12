@@ -37,7 +37,7 @@ class WebSecurityConfig {
     @Bean
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
         http
-                .csrf { it.ignoringRequestMatchers("/*") }
+//                .csrf { it.ignoringRequestMatchers("/*") }
                 .authorizeHttpRequests { requests ->
                     requests
                             .requestMatchers("/", "/greeting").permitAll()

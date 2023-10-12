@@ -7,6 +7,7 @@ import de.richargh.sandbox.htmx.kotlinxhtml.commons.html.redirect
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.Authentication
+import org.springframework.security.web.csrf.CsrfToken
 import org.springframework.stereotype.Controller
 import org.springframework.validation.BindingResult
 import org.springframework.web.bind.annotation.GetMapping
@@ -20,35 +21,39 @@ class ProductsController(
 
     @GetMapping(Paths.Products.INDEX)
     fun getProductsPage(
-            auth: Authentication): ResponseEntity<String> {
-        return html(productsPage(ctx(auth), productsFacade.all()))
+            auth: Authentication,
+            csrfToken: CsrfToken): ResponseEntity<String> {
+        return html(productsPage(ctx(auth, csrfToken), productsFacade.all()))
     }
 
     @GetMapping(Paths.Products.ADD)
     fun getAddProductPage(
-            auth: Authentication) =
-            html(putProductPage(ctx(auth), ProductFormData.of(PutProduct.empty()), PutProductType.Add))
+            auth: Authentication,
+            csrfToken: CsrfToken) =
+            html(putProductPage(ctx(auth, csrfToken), ProductFormData.of(PutProduct.empty()), PutProductType.Add))
 
     @GetMapping(Paths.Products.EDIT)
     fun getEditProductPage(
             auth: Authentication,
+            csrfToken: CsrfToken,
             @PathVariable("id") rawProductId: String): ResponseEntity<String> {
         val product = productsFacade.byId(ProductId.of(rawProductId))
                 ?: return redirect(Paths.Products.INDEX)
 
-        return html(putProductPage(ctx(auth), ProductFormData.of(product), PutProductType.Edit))
+        return html(putProductPage(ctx(auth, csrfToken), ProductFormData.of(product), PutProductType.Edit))
     }
 
     @PostMapping(Paths.Products.INDEX)
     fun postProduct(
             auth: Authentication,
+            csrfToken: CsrfToken,
             @Valid @ModelAttribute("productForm") productFormData: ProductFormData, bindingResult: BindingResult): ResponseEntity<String> {
         println(bindingResult)
 
         if (bindingResult.hasErrors()) {
             val type = if (productsFacade.byId(ProductId.of(productFormData.id)) == null)
                 PutProductType.Add else PutProductType.Edit
-            return html(putProductPage(ctx(auth), productFormData, type, bindingResult))
+            return html(putProductPage(ctx(auth, csrfToken), productFormData, type, bindingResult))
         }
         productsFacade.put(productFormData.toDomain())
         return redirect(Paths.Products.INDEX)

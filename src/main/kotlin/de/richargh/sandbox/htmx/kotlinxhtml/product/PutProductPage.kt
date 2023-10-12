@@ -10,7 +10,7 @@ import org.springframework.validation.FieldError
 
 fun putProductPage(ctx: PageContext, product: ProductFormData, type: PutProductType, bindingResult: BindingResult? = null) = generalPage(ctx) {
     h1 { +"$type Product" }
-    putProductForm(product, type, bindingResult)
+    putProductForm(ctx, product, type, bindingResult)
 }
 
 enum class PutProductType {
@@ -19,7 +19,7 @@ enum class PutProductType {
 }
 
 @HtmlTagMarker
-fun MAIN.putProductForm(product: ProductFormData, type: PutProductType, bindingResult: BindingResult?) = form {
+fun MAIN.putProductForm(ctx: PageContext, product: ProductFormData, type: PutProductType, bindingResult: BindingResult?) = form {
     action = Paths.Products.INDEX
     method = post
     name = "productForm"
@@ -57,4 +57,5 @@ fun MAIN.putProductForm(product: ProductFormData, type: PutProductType, bindingR
 
     input(type = InputType.submit) { value = "$type" }
     input(type = InputType.hidden, name = ProductFormData::id.name) { value = product.id }
+    input(type = InputType.hidden, name = "_csrf") { value = ctx.csrfToken!!.rawValue }
 }

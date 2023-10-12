@@ -23,6 +23,7 @@ fun HEADER.menu(ctx: PageContext) = nav {
                     value = "Logout"
                     +"Logout ${ctx.user.userName}"
                 }
+                input(type = InputType.hidden, name = "_csrf") { value = ctx.csrfToken!!.rawValue }
             }
         }
     }
