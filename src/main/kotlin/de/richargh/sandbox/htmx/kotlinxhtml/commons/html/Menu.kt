@@ -4,6 +4,7 @@ import kotlinx.html.*
 
 @HtmlTagMarker
 fun HEADER.menu(ctx: PageContext) = nav {
+    attributes["hx-boost"] = "true"
     ul {
         li {
             a(href = Paths.Greeting.INDEX) { +"Greeting" }
