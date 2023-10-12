@@ -9,9 +9,11 @@
 == Preconditions
 
 * Install the java version from link:.sdkmanrc[] via link:https://sdkman.io/[SdkMan] by calling `sdk env`
+* Install the node version from link:.custom-elements/.nvmrc[] via link:https://github.com/Schniz/fnm[fnm] (or link:https://github.com/nvm-sh/nvm[nvm]]) by calling `fnm use`
 
 == Usage
 
+* Build and move .js files to src/main/resources/public via `cd custom-modules && npm ci && npm run build`
 * Run server via `./gradlew bootRun` and open link:http://localhost:8080[localhost:8080].
 * Run tests via `./gradlew test`
 

@@ -1,0 +1,21 @@
+{
+  "name": "htmx-kotlinx-html-custom-elements",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "build": "npm run build:htmx && npm run build:simplecss",
+    "build:htmx": "cp node_modules/htmx.org/dist/htmx.min.js ../src/main/resources/public/htmx.min.js",
+    "build:simplecss": "cp node_modules/simpledotcss/simple.min.css ../src/main/resources/public/simple.min.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "htmx.org": "^1.9.6",
+    "simpledotcss": "^2.2.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.19.4"
+  }
+}

@@ -10,7 +10,11 @@ fun generalPage(ctx: PageContext, content: MAIN.() -> Unit): String {
             meta { charset = "utf-8" }
             meta { name="viewport"; this.content ="width=device-width, initial-scale=1" }
             title { +"Htmx Demo" }
-            link(href = "https://cdn.simplecss.org/simple.min.css", "stylesheet")
+            title { +"Htmx Demo" }
+            link(href = "/public/simple.min.css", "stylesheet")
+            script(type = "text/javascript", src = "/public/htmx.min.js") {
+                defer = true
+            }
         }
         body {
             header {
