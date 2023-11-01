@@ -1,6 +1,7 @@
 package de.richargh.sandbox.htmx.kotlinxhtml.greeting
 
 import de.richargh.sandbox.htmx.kotlinxhtml.commons.html.Paths
+import de.richargh.sandbox.htmx.kotlinxhtml.commons.html.Version
 import de.richargh.sandbox.htmx.kotlinxhtml.commons.html.ctx
 import de.richargh.sandbox.htmx.kotlinxhtml.commons.html.html
 import org.springframework.security.core.Authentication
@@ -13,6 +14,8 @@ class GreetingController {
     @GetMapping(Paths.Greeting.INDEX)
     fun greeting(
             auth: Authentication?,
-            csrfToken: CsrfToken) =
+            csrfToken: CsrfToken,
+            @Version version: String?) =
             html(makeGreetingPage(ctx(auth, csrfToken)))
+
 }
