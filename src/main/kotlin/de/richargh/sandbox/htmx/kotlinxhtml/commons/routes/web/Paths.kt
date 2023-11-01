@@ -17,6 +17,7 @@ object Paths {
 
     object Products {
         const val INDEX = "/products"
+        const val SEARCH = "$INDEX/search"
         const val ADD = "$INDEX/add"
         const val EDIT = "$INDEX/{id}"
         fun edit(id: ProductId) = "$INDEX/${id.rawValue}"

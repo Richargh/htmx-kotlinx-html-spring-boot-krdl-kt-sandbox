@@ -8,12 +8,26 @@ import kotlinx.html.*
 
 fun productsPage(ctx: PageContext, products: Collection<Product>) = generalPage(ctx) {
     h1 { +"Products" }
-    a(href = Paths.Products.ADD){ +"Add Product" }
+    a(href = Paths.Products.ADD) { +"Add Product" }
+    br { }
+
+    productsSearch()
     productsTable(products)
 }
 
 @HtmlTagMarker
-fun MAIN.productsTable(products: Collection<Product>) = table {
+fun MAIN.productsSearch() = input {
+    type = InputType.search
+    name = "q"
+    placeholder = "Begin Typing To Search Products..."
+
+    attributes["hx-get"] = Paths.Products.SEARCH
+    attributes["hx-trigger"] = "keyup changed delay:500ms, search"
+    attributes["hx-target"] = "#$productsTableBodyId"
+    attributes["hx-indicator"] = ".htmx-indicator"
+}
+
+fun FlowContent.productsTable(products: Collection<Product>) = table {
     attributes["data-testid"] = "products-table"
     thead {
         tr {
@@ -23,15 +37,19 @@ fun MAIN.productsTable(products: Collection<Product>) = table {
             th { }
         }
     }
-    tbody {
-        products.forEach {
-            tr {
-                td { +it.name }
-                td { +it.price.rawCents.toString() }
-                td { +(if(it.stock > 0) "Yes" else "No" ) }
-                td { a(href = Paths.Products.edit(it.id)) { +"Edit"} }
-            }
+    productsTableBody(products)
+}
+
+private const val productsTableBodyId = "search-results"
+
+fun TABLE.productsTableBody(products: Collection<Product>) = tbody {
+    id = productsTableBodyId
+    products.forEach {
+        tr {
+            td { +it.name }
+            td { +it.price.rawCents.toString() }
+            td { +(if (it.stock > 0) "Yes" else "No") }
+            td { a(href = Paths.Products.edit(it.id)) { +"Edit" } }
         }
     }
-
 }

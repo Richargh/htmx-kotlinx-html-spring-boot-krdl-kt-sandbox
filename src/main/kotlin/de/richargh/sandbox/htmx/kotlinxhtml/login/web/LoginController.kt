@@ -7,6 +7,7 @@ import de.richargh.sandbox.htmx.kotlinxhtml.commons.response.web.html
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RequestHeader
 import org.springframework.web.bind.annotation.RequestParam
 
 @Controller
@@ -15,9 +16,13 @@ class LoginController {
     fun getLoginPage(
         @Context ctx: PageContext,
         @RequestParam error: String?,
-        @RequestParam logout: String?): ResponseEntity<String> {
-        println("error=${error != null} logout=${logout != null}")
-        return html(loginPage(ctx, loginError = error != null, wasLoggedOut = logout != null))
+        @RequestParam logout: String?,
+        @RequestHeader("HX-Request") isHxRequest: Boolean = false,
+        @RequestHeader("HX-Target") hxTarget: String?): ResponseEntity<String> {
+        return if(isHxRequest && hxTarget != null && !hxTarget.contains(Paths.Login.INDEX)){
+            html("Please refresh this page and login")
+        } else {
+            html(loginPage(ctx, loginError = error != null, wasLoggedOut = logout != null))
+        }
     }
-
 }

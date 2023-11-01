@@ -23,6 +23,13 @@ class ProductsFacade {
         return allProducts[productId]
     }
 
+    fun byQuery(q: String): List<Product> {
+        return allProducts.asSequence()
+            .filter { it.value.name.contains(q, ignoreCase = true) }
+            .map { it.value }
+            .toList()
+    }
+
     fun put(putProduct: PutProduct) {
         var product = allProducts[putProduct.id]
         product = product?.merge(putProduct) ?: Product.of(putProduct)

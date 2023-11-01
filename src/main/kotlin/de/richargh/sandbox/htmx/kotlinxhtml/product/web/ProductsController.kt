@@ -2,20 +2,28 @@ package de.richargh.sandbox.htmx.kotlinxhtml.product.web
 
 import de.richargh.sandbox.htmx.kotlinxhtml.commons.context.web.Context
 import de.richargh.sandbox.htmx.kotlinxhtml.commons.context.web.PageContext
+import de.richargh.sandbox.htmx.kotlinxhtml.commons.money.domain.Euro
+import de.richargh.sandbox.htmx.kotlinxhtml.commons.response.web.fragment
 import de.richargh.sandbox.htmx.kotlinxhtml.commons.routes.web.Paths
 import de.richargh.sandbox.htmx.kotlinxhtml.commons.response.web.html
 import de.richargh.sandbox.htmx.kotlinxhtml.commons.response.web.redirect
+import de.richargh.sandbox.htmx.kotlinxhtml.product.domain.Product
 import de.richargh.sandbox.htmx.kotlinxhtml.product.domain.ProductId
 import de.richargh.sandbox.htmx.kotlinxhtml.product.domain.ProductsFacade
 import de.richargh.sandbox.htmx.kotlinxhtml.product.domain.PutProduct
 import jakarta.validation.Valid
+import kotlinx.html.*
+import kotlinx.html.consumers.PredicateResult
+import kotlinx.html.consumers.filter
+import kotlinx.html.dom.createHTMLDocument
+import kotlinx.html.dom.serialize
+import kotlinx.html.stream.appendHTML
+import kotlinx.html.stream.createHTML
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
 import org.springframework.validation.BindingResult
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.ModelAttribute
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.*
+import org.springframework.web.context.request.NativeWebRequest
 
 @Controller
 class ProductsController(
@@ -29,9 +37,7 @@ class ProductsController(
     }
 
     @GetMapping(Paths.Products.ADD)
-    fun getAddProductPage(
-            @Context ctx: PageContext
-    ) =
+    fun getAddProductPage(@Context ctx: PageContext) =
             html(putProductPage(ctx, ProductFormData.of(PutProduct.empty()), PutProductType.Add))
 
     @GetMapping(Paths.Products.EDIT)
@@ -42,6 +48,19 @@ class ProductsController(
                 ?: return redirect(Paths.Products.INDEX)
 
         return html(putProductPage(ctx, ProductFormData.of(product), PutProductType.Edit))
+    }
+
+    @GetMapping(Paths.Products.SEARCH)
+    fun getSearchProductFragment(
+        @RequestParam q: String,
+        @Context ctx: PageContext): ResponseEntity<String> {
+        val products = productsFacade.byQuery(q)
+
+        return fragment(buildString {
+            appendHTML().filter { if(it.tagName == "table" || it.tagName == "tbody") PredicateResult.SKIP else PredicateResult.PASS }.table {
+                productsTableBody(products)
+            }
+        })
     }
 
     @PostMapping(Paths.Products.INDEX)
@@ -58,4 +77,5 @@ class ProductsController(
         productsFacade.put(productFormData.toDomain())
         return redirect(Paths.Products.INDEX)
     }
+
 }
