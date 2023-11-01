@@ -4,10 +4,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
 
-@SpringBootTest
-@ContextConfiguration(
-    initializers = [ApplicationTestContext::class],
+@SpringBootTest(
     classes = [Application::class]
 )
+@ContextConfiguration(initializers = [ApplicationTestContext::class])
 @AutoConfigureMockMvc
 annotation class ApplicationTest
