@@ -3,6 +3,8 @@
 == Features
 
 * Htmx
+** link:https://htmx.org/attributes/hx-boost/[HxBoost] for Tabs
+** link:https://htmx.org/examples/active-search/[ActiveSearch] for products table
 * Kotlinx.Html
 * Spring Boot
 ** Spring Validation
