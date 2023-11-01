@@ -1,12 +1,8 @@
 package de.richargh.sandbox.htmx.kotlinxhtml.greeting
 
 import de.richargh.sandbox.htmx.kotlinxhtml.greeting.domain.GreetingFacade
-import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.Configuration
+import org.springframework.context.support.BeanDefinitionDsl
 
-@Configuration
-class GreetingConfig {
-
-    @Bean
-    fun greetingFacade() = GreetingFacade()
+fun BeanDefinitionDsl.greetingConfig() {
+    bean<GreetingFacade>()
 }
