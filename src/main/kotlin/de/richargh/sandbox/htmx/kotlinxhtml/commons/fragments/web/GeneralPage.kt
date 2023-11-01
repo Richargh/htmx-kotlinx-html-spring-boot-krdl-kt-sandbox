@@ -1,5 +1,6 @@
-package de.richargh.sandbox.htmx.kotlinxhtml.commons.html
+package de.richargh.sandbox.htmx.kotlinxhtml.commons.fragments.web
 
+import de.richargh.sandbox.htmx.kotlinxhtml.commons.context.web.PageContext
 import kotlinx.html.dom.createHTMLDocument
 import kotlinx.html.dom.serialize
 import kotlinx.html.*

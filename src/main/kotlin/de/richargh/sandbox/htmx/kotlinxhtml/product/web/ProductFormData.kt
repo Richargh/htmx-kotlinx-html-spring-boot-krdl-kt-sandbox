@@ -1,6 +1,9 @@
-package de.richargh.sandbox.htmx.kotlinxhtml.product
+package de.richargh.sandbox.htmx.kotlinxhtml.product.web
 
-import de.richargh.sandbox.htmx.kotlinxhtml.commons.money.Euro
+import de.richargh.sandbox.htmx.kotlinxhtml.commons.money.domain.Euro
+import de.richargh.sandbox.htmx.kotlinxhtml.product.domain.Product
+import de.richargh.sandbox.htmx.kotlinxhtml.product.domain.ProductId
+import de.richargh.sandbox.htmx.kotlinxhtml.product.domain.PutProduct
 import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.NotEmpty
 

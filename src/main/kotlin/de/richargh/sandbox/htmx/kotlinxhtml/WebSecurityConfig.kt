@@ -1,6 +1,6 @@
 package de.richargh.sandbox.htmx.kotlinxhtml
 
-import de.richargh.sandbox.htmx.kotlinxhtml.login.LoginFormData
+import de.richargh.sandbox.htmx.kotlinxhtml.login.web.LoginFormData
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity

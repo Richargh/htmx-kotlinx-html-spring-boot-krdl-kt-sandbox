@@ -1,4 +1,4 @@
-package de.richargh.sandbox.htmx.kotlinxhtml.commons.html
+package de.richargh.sandbox.htmx.kotlinxhtml.commons.context.web
 
 import org.springframework.core.MethodParameter
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken

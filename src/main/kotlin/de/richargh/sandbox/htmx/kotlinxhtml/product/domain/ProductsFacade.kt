@@ -1,7 +1,6 @@
-package de.richargh.sandbox.htmx.kotlinxhtml.product
+package de.richargh.sandbox.htmx.kotlinxhtml.product.domain
 
-import de.richargh.sandbox.htmx.kotlinxhtml.commons.money.Euro
-import org.springframework.lang.Nullable
+import de.richargh.sandbox.htmx.kotlinxhtml.commons.money.domain.Euro
 import java.util.concurrent.ConcurrentHashMap
 
 
@@ -11,7 +10,8 @@ class ProductsFacade {
     init {
         sequenceOf(
                 Product(ProductId.unique(), "Cup", Euro.ofEuros(1), 1),
-                Product(ProductId.unique(), "Bottle", Euro.ofEuros(10), 2))
+                Product(ProductId.unique(), "Bottle", Euro.ofEuros(10), 2)
+        )
                 .associateByTo(allProducts, Product::id)
     }
 

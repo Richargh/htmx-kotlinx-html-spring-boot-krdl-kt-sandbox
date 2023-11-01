@@ -1,5 +1,7 @@
-package de.richargh.sandbox.htmx.kotlinxhtml.commons.html
+package de.richargh.sandbox.htmx.kotlinxhtml.commons.fragments.web
 
+import de.richargh.sandbox.htmx.kotlinxhtml.commons.context.web.PageContext
+import de.richargh.sandbox.htmx.kotlinxhtml.commons.routes.web.Paths
 import kotlinx.html.*
 
 @HtmlTagMarker

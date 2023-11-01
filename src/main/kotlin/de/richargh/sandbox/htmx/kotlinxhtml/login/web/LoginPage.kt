@@ -1,15 +1,15 @@
-package de.richargh.sandbox.htmx.kotlinxhtml.login
+package de.richargh.sandbox.htmx.kotlinxhtml.login.web
 
-import de.richargh.sandbox.htmx.kotlinxhtml.commons.html.PageContext
-import de.richargh.sandbox.htmx.kotlinxhtml.commons.html.Paths
-import de.richargh.sandbox.htmx.kotlinxhtml.commons.html.generalPage
+import de.richargh.sandbox.htmx.kotlinxhtml.commons.context.web.PageContext
+import de.richargh.sandbox.htmx.kotlinxhtml.commons.routes.web.Paths
+import de.richargh.sandbox.htmx.kotlinxhtml.commons.fragments.web.generalPage
 import kotlinx.html.FormMethod.post
 import kotlinx.html.*
 
 fun loginPage(
-        ctx: PageContext,
-        loginError: Boolean,
-        wasLoggedOut: Boolean) = generalPage(ctx) {
+    ctx: PageContext,
+    loginError: Boolean,
+    wasLoggedOut: Boolean) = generalPage(ctx) {
     form {
         action = Paths.Login.INDEX
         method = post

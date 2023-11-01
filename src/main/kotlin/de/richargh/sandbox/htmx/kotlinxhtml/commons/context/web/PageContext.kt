@@ -1,4 +1,4 @@
-package de.richargh.sandbox.htmx.kotlinxhtml.commons.html
+package de.richargh.sandbox.htmx.kotlinxhtml.commons.context.web
 
 data class PageContext(
         val user: PageUser?,

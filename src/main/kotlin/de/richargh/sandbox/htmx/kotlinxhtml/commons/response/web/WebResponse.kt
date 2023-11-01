@@ -1,4 +1,4 @@
-package de.richargh.sandbox.htmx.kotlinxhtml.commons.html
+package de.richargh.sandbox.htmx.kotlinxhtml.commons.response.web
 
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType

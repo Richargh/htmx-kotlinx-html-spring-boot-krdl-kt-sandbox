@@ -1,6 +1,6 @@
 package de.richargh.sandbox.htmx.kotlinxhtml
 
-import de.richargh.sandbox.htmx.kotlinxhtml.commons.html.PageContextArgumentResolver
+import de.richargh.sandbox.htmx.kotlinxhtml.commons.context.web.PageContextArgumentResolver
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.method.support.HandlerMethodArgumentResolver
 import org.springframework.web.servlet.config.annotation.EnableWebMvc

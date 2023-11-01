@@ -1,6 +1,6 @@
-package de.richargh.sandbox.htmx.kotlinxhtml.product
+package de.richargh.sandbox.htmx.kotlinxhtml.product.domain
 
-import de.richargh.sandbox.htmx.kotlinxhtml.commons.money.Euro
+import de.richargh.sandbox.htmx.kotlinxhtml.commons.money.domain.Euro
 import java.security.InvalidParameterException
 
 data class Product(val id: ProductId, val name: String, val price: Euro, val stock: Int) {

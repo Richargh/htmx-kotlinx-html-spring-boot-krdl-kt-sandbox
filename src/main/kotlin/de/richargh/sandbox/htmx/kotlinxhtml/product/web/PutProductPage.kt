@@ -1,8 +1,8 @@
-package de.richargh.sandbox.htmx.kotlinxhtml.product
+package de.richargh.sandbox.htmx.kotlinxhtml.product.web
 
-import de.richargh.sandbox.htmx.kotlinxhtml.commons.html.PageContext
-import de.richargh.sandbox.htmx.kotlinxhtml.commons.html.Paths
-import de.richargh.sandbox.htmx.kotlinxhtml.commons.html.generalPage
+import de.richargh.sandbox.htmx.kotlinxhtml.commons.context.web.PageContext
+import de.richargh.sandbox.htmx.kotlinxhtml.commons.routes.web.Paths
+import de.richargh.sandbox.htmx.kotlinxhtml.commons.fragments.web.generalPage
 import kotlinx.html.*
 import kotlinx.html.FormMethod.*
 import org.springframework.validation.BindingResult

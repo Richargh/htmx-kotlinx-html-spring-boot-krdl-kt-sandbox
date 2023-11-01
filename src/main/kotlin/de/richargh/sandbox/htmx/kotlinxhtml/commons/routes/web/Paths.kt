@@ -1,6 +1,6 @@
-package de.richargh.sandbox.htmx.kotlinxhtml.commons.html
+package de.richargh.sandbox.htmx.kotlinxhtml.commons.routes.web
 
-import de.richargh.sandbox.htmx.kotlinxhtml.product.ProductId
+import de.richargh.sandbox.htmx.kotlinxhtml.product.domain.ProductId
 
 object Paths {
     object Greeting {

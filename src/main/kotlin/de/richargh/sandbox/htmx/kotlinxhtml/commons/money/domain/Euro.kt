@@ -1,4 +1,4 @@
-package de.richargh.sandbox.htmx.kotlinxhtml.commons.money
+package de.richargh.sandbox.htmx.kotlinxhtml.commons.money.domain
 
 
 @JvmRecord

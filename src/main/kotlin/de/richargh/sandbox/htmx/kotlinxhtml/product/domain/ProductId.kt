@@ -1,4 +1,4 @@
-package de.richargh.sandbox.htmx.kotlinxhtml.product
+package de.richargh.sandbox.htmx.kotlinxhtml.product.domain
 
 import java.util.*
 

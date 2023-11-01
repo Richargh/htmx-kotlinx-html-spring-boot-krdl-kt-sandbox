@@ -1,6 +1,6 @@
-package de.richargh.sandbox.htmx.kotlinxhtml.product
+package de.richargh.sandbox.htmx.kotlinxhtml.product.domain
 
-import de.richargh.sandbox.htmx.kotlinxhtml.commons.money.Euro
+import de.richargh.sandbox.htmx.kotlinxhtml.commons.money.domain.Euro
 
 data class PutProduct(val id: ProductId, val name: String, val price: Euro) {
 
