@@ -1,1 +1,1 @@
-rootProject.name = "htmx-kotlinx-html-sandbox"
+rootProject.name = "htmx-kotlinx-html-boot-sandbox"
