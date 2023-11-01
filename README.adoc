@@ -5,6 +5,9 @@
 * Htmx
 * Kotlinx.Html
 * Spring Boot
+** Spring Validation
+** Spring Security
+** Custom Argument Resolver
 
 == Preconditions
 
