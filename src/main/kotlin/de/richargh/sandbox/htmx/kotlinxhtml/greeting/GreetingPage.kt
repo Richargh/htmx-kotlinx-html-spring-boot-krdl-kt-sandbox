@@ -6,4 +6,5 @@ import kotlinx.html.*
 
 fun makeGreetingPage(ctx: PageContext) = generalPage(ctx) {
     h1 { +"Greeting" }
+    p { +"Hello ${ctx.user?.userName ?: "Anonymous"}" }
 }

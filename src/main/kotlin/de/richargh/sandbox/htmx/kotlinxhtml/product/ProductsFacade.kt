@@ -19,7 +19,6 @@ class ProductsFacade {
         return allProducts.values
     }
 
-    @Nullable
     fun byId(productId: ProductId): Product? {
         return allProducts[productId]
     }
