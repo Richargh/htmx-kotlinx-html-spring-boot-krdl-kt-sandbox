@@ -9,6 +9,7 @@
 * Spring Boot
 ** Spring Validation
 ** Spring Security
+** Spring Security Test
 ** Custom Argument Resolver
 
 == Preconditions
