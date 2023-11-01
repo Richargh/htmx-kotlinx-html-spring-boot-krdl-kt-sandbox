@@ -1,6 +1,6 @@
 package de.richargh.sandbox.htmx.kotlinxhtml
 
-import de.richargh.sandbox.htmx.kotlinxhtml.commons.html.HeaderVersionArgumentResolver
+import de.richargh.sandbox.htmx.kotlinxhtml.commons.html.PageContextArgumentResolver
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.method.support.HandlerMethodArgumentResolver
 import org.springframework.web.servlet.config.annotation.EnableWebMvc
@@ -19,7 +19,7 @@ class WebConfig : WebMvcConfigurer {
     }
 
     override fun addArgumentResolvers(argumentResolvers: MutableList<HandlerMethodArgumentResolver>) {
-        argumentResolvers.add(HeaderVersionArgumentResolver())
+        argumentResolvers.add(PageContextArgumentResolver())
     }
 
 }

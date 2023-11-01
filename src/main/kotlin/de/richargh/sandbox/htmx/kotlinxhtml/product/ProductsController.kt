@@ -1,13 +1,8 @@
 package de.richargh.sandbox.htmx.kotlinxhtml.product
 
-import de.richargh.sandbox.htmx.kotlinxhtml.commons.html.Paths
-import de.richargh.sandbox.htmx.kotlinxhtml.commons.html.ctx
-import de.richargh.sandbox.htmx.kotlinxhtml.commons.html.html
-import de.richargh.sandbox.htmx.kotlinxhtml.commons.html.redirect
+import de.richargh.sandbox.htmx.kotlinxhtml.commons.html.*
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
-import org.springframework.security.core.Authentication
-import org.springframework.security.web.csrf.CsrfToken
 import org.springframework.stereotype.Controller
 import org.springframework.validation.BindingResult
 import org.springframework.web.bind.annotation.GetMapping
@@ -21,39 +16,35 @@ class ProductsController(
 
     @GetMapping(Paths.Products.INDEX)
     fun getProductsPage(
-            auth: Authentication,
-            csrfToken: CsrfToken): ResponseEntity<String> {
-        return html(productsPage(ctx(auth, csrfToken), productsFacade.all()))
+            @Context ctx: PageContext,): ResponseEntity<String> {
+        return html(productsPage(ctx, productsFacade.all()))
     }
 
     @GetMapping(Paths.Products.ADD)
     fun getAddProductPage(
-            auth: Authentication,
-            csrfToken: CsrfToken) =
-            html(putProductPage(ctx(auth, csrfToken), ProductFormData.of(PutProduct.empty()), PutProductType.Add))
+            @Context ctx: PageContext) =
+            html(putProductPage(ctx, ProductFormData.of(PutProduct.empty()), PutProductType.Add))
 
     @GetMapping(Paths.Products.EDIT)
     fun getEditProductPage(
-            auth: Authentication,
-            csrfToken: CsrfToken,
+            @Context ctx: PageContext,
             @PathVariable("id") rawProductId: String): ResponseEntity<String> {
         val product = productsFacade.byId(ProductId.of(rawProductId))
                 ?: return redirect(Paths.Products.INDEX)
 
-        return html(putProductPage(ctx(auth, csrfToken), ProductFormData.of(product), PutProductType.Edit))
+        return html(putProductPage(ctx, ProductFormData.of(product), PutProductType.Edit))
     }
 
     @PostMapping(Paths.Products.INDEX)
     fun postProduct(
-            auth: Authentication,
-            csrfToken: CsrfToken,
+            @Context ctx: PageContext,
             @Valid @ModelAttribute("productForm") productFormData: ProductFormData, bindingResult: BindingResult): ResponseEntity<String> {
         println(bindingResult)
 
         if (bindingResult.hasErrors()) {
             val type = if (productsFacade.byId(ProductId.of(productFormData.id)) == null)
                 PutProductType.Add else PutProductType.Edit
-            return html(putProductPage(ctx(auth, csrfToken), productFormData, type, bindingResult))
+            return html(putProductPage(ctx, productFormData, type, bindingResult))
         }
         productsFacade.put(productFormData.toDomain())
         return redirect(Paths.Products.INDEX)
